@@ -24,12 +24,11 @@ object RDD_Demo {
 //    rdd3.foreach(x=>print(x + ","))
 //    println()
 
-    val text_file = sc.textFile("/home/saurabh/Desktop/Spafka_RW/Read/SR_To_Do-list")
+    val text_file = sc.textFile(args(0))
     val rd_text = text_file.flatMap(_.split(" "))
     val wordCounts = rd_text.map((_, 1)).reduceByKey(_ + _)
 
-    // Warning: always change the file name before running this application, otherwise it return with exit code 1 instead of 0.
-    wordCounts.saveAsTextFile("/home/saurabh/Desktop/Spafka_RW/Write/SR_To_Do-list_1")
+    wordCounts.saveAsTextFile(args(1))
 
   }
 }
